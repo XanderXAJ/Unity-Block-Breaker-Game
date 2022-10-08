@@ -5,7 +5,7 @@ public class Ball : MonoBehaviour
 	// Initial position of the ball
 	Vector3 initialPosition = new Vector3(0, -3, 0);
 	// Initial velocity of the ball
-	Vector2 initialVelocity = new Vector2(3f, 3f);
+	Vector2 initialVelocity = new Vector2(1f, 3f);
 	// Minimum change in velocity upon collision
 	const float collisionVelocityDeltaMin = 0f;
 	// Maximum change in velocity upon collision
