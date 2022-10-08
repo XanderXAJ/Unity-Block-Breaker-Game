@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class Restart : MonoBehaviour
 {
+	bool checkIfAllBlocksDestroyed;
+
 	public void RestartLevel()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -10,11 +12,23 @@ public class Restart : MonoBehaviour
 
 	public void CheckIfAllBlocksDestroyed()
 	{
-		GameObject[] blockObjects = GameObject.FindGameObjectsWithTag("Block");
+		// Check blocks on next update to give Unity the opportunity to destroy any blocks during this update
+		// Note: Is this bullet-proof? What if Restart's Update() call happens during the same update as a Block's destroyed?
+		checkIfAllBlocksDestroyed = true;
+	}
 
-		if (blockObjects.Length < 1)
+	void Update()
+	{
+		if (checkIfAllBlocksDestroyed)
 		{
-			RestartLevel();
+			GameObject[] blockObjects = GameObject.FindGameObjectsWithTag("Block");
+
+			if (blockObjects.Length < 1)
+			{
+				RestartLevel();
+			}
+
+			checkIfAllBlocksDestroyed = false;
 		}
 	}
 }
