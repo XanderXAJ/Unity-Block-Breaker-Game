@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+	Restart restart;
+
+	void Start()
+	{
+		restart = FindObjectOfType<Restart>();
+	}
+
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		HandleBlockCollision();
@@ -13,5 +20,6 @@ public class Block : MonoBehaviour
 	private void HandleBlockCollision()
 	{
 		Destroy(this.gameObject);
+		restart.CheckIfAllBlocksDestroyed();
 	}
 }
