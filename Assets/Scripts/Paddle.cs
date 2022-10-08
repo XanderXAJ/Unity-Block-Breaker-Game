@@ -6,14 +6,19 @@ public class Paddle : MonoBehaviour
 {
 	// Paddle movement in units per second
 	const float paddleSpeed = 3f;
+	// Arena bounds
+	const float arenaMinXPosition = -2.31f;
+	const float arenaMaxXPosition = 2.31f;
 	// Paddle movement bounds
-	const float paddleMinXPosition = -2.31f + (1f / 2);
-	const float paddleMaxXPosition = 2.31f - (1f / 2);
+	float paddleMinXPosition;
+	float paddleMaxXPosition;
+
 
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		paddleMinXPosition = arenaMinXPosition + (this.transform.localScale.x / 2);
+		paddleMaxXPosition = arenaMaxXPosition - (this.transform.localScale.x / 2);
 	}
 
 	// Update is called once per frame
